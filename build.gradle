@@ -52,6 +52,7 @@ dependencies {
 test {
   dependsOn cleanTest
   testLogging.showStandardStreams = true
+  finalizedBy jacocoTestReport // report is always generated after tests run
 }
 
 tasks.withType(JavaCompile) {
@@ -77,6 +78,7 @@ task buildDependenciesFolder(type: Copy) {
 }
 
 jacocoTestReport {
+  dependsOn test
   reports {
     html.enabled = true
   }
