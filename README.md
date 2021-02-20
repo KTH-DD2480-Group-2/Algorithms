@@ -26,8 +26,8 @@ NLOC  |  CCN  | token | PARAM | length | location
   72  |   21  |  611  |    0  |   101  |  GenericSegmentTreeTest::testAllFunctionCombinations@222-322@./src/test/java/com/williamfiset/algorithms/datastructures/segmenttree/GenericSegmentTreeTest.java
 
 Total nloc | Avg.NLOC | AvgCCN | Avg.token |  Fun Cnt | Warning cnt | Fun Rt | nloc Rt
------------|----------|--------|-----------|----------|-------------|--------|-------------------
-     28870 |    9.4   |   2.5  |    84.5   |   2696   |     13      |  0.00  |  0.03
+-----------|----------|--------|-----------|----------|-------------|--------|---------
+28870   |    9.4   |   2.5  |    84.5   |   2696   |     13      |  0.00  |  0.03
 
 # Contributing
 
