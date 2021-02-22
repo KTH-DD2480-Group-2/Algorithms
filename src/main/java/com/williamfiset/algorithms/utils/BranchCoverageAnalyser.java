@@ -56,10 +56,4 @@ public class BranchCoverageAnalyser {
     return branchesCoveredCache.contains(branchId);
   }
 
-  public static void main(String[] args) {
-    markCovered("ABC");
-    markCovered("ABC");
-    markCovered("ABD");
-  }
-
 }
