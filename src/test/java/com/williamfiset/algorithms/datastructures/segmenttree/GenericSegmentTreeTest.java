@@ -321,6 +321,34 @@ public class GenericSegmentTreeTest {
     }
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testNullSegmentTreeValues() {
+    long values[] = null;
+    GenericSegmentTree.SegmentCombinationFn combinationFn = GenericSegmentTree.SegmentCombinationFn.MIN;
+    GenericSegmentTree.RangeUpdateFn rangeUpdateFn = GenericSegmentTree.RangeUpdateFn.ADDITION;
+
+    GenericSegmentTree tree = new GenericSegmentTree(values, combinationFn, rangeUpdateFn);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNullSegmentTreeCombinationFunction() {
+    long values[] = {0};
+    GenericSegmentTree.SegmentCombinationFn combinationFn = null;
+    GenericSegmentTree.RangeUpdateFn rangeUpdateFn = GenericSegmentTree.RangeUpdateFn.ADDITION;
+
+    GenericSegmentTree tree = new GenericSegmentTree(values, combinationFn, rangeUpdateFn);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNullSegmentTreeUpdateFunction() {
+    //initalize an empty matrix
+    long values[] = {0};
+    GenericSegmentTree.SegmentCombinationFn combinationFn = GenericSegmentTree.SegmentCombinationFn.MIN;
+    GenericSegmentTree.RangeUpdateFn rangeUpdateFn = null;
+
+    GenericSegmentTree tree = new GenericSegmentTree(values, combinationFn, rangeUpdateFn);
+  }
+
   private static long getRandValueByTestType(
       GenericSegmentTree.SegmentCombinationFn combinationFn) {
     if (combinationFn != GenericSegmentTree.SegmentCombinationFn.GCD) {
