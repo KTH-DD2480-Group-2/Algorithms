@@ -11,8 +11,12 @@ import static com.williamfiset.algorithms.graphtheory.treealgorithms.TreeIsomorp
 import static com.williamfiset.algorithms.graphtheory.treealgorithms.TreeIsomorphismWithBfs.createEmptyTree;
 import static com.williamfiset.algorithms.graphtheory.treealgorithms.TreeIsomorphismWithBfs.encodeTree;
 import static com.williamfiset.algorithms.graphtheory.treealgorithms.TreeIsomorphismWithBfs.treesAreIsomorphic;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+
 import org.junit.*;
 
 public class TreeIsomorphismWithBfsTest {
@@ -185,5 +189,49 @@ public class TreeIsomorphismWithBfsTest {
     List<List<Integer>> tree = createEmptyTree(0);
     String treesString = encodeTree(tree);
     assertThat(treesString).isEqualTo("");
+  }
+
+  @Test
+  public void isomorphicTest(){
+    List<List<Integer>> tree1 = createEmptyTree(5);
+    List<List<Integer>> tree2 = createEmptyTree(5);
+
+    addUndirectedEdge(tree1, 2, 0);
+    addUndirectedEdge(tree1, 3, 4);
+    addUndirectedEdge(tree1, 2, 1);
+    addUndirectedEdge(tree1, 2, 3);
+
+    addUndirectedEdge(tree2, 1, 0);
+    addUndirectedEdge(tree2, 2, 4);
+    addUndirectedEdge(tree2, 1, 3);
+    addUndirectedEdge(tree2, 1, 2);
+
+    String encoding1 = encodeTree(tree1);
+    String encoding2 = encodeTree(tree2);
+    assertThat(encoding1).isEqualTo(encoding2);
+  }
+
+  /**
+   * Check that a cyclic tree is not a valid input
+   */
+  @Test
+  public void cyclicTest(){
+    List<List<Integer>> tree = createEmptyTree(4);
+    addUndirectedEdge(tree, 0, 1);
+    addUndirectedEdge(tree, 1, 2);
+    addUndirectedEdge(tree, 2, 0);
+    Thread thread = (new Thread() {
+      public void run() {
+        assertThrows(IllegalArgumentException.class, () -> encodeTree(tree));
+      }
+    });
+    thread.start();
+    try {
+      TimeUnit.SECONDS.sleep(10);
+      if (thread.isAlive())
+        assertTrue(false);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }
