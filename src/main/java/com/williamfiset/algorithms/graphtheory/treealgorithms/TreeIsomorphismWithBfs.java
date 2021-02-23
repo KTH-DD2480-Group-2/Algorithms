@@ -14,6 +14,7 @@
  */
 package com.williamfiset.algorithms.graphtheory.treealgorithms;
 
+import com.williamfiset.algorithms.utils.BranchCoverageAnalyser;
 import java.util.*;
 
 public class TreeIsomorphismWithBfs {
@@ -61,8 +62,16 @@ public class TreeIsomorphismWithBfs {
   // also has the same encoding.
   // TODO(william): make this method private and test only with the treesAreIsomorphic method
   public static String encodeTree(List<List<Integer>> tree) {
-    if (tree == null || tree.size() == 0) return "";
-    if (tree.size() == 1) return "()";
+    if (!(tree == null) && !(tree.size() == 0))
+      BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_1");
+    if (tree == null || tree.size() == 0) {
+      BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_2");
+      return ""; // PI = 2, S = 1
+    }
+    if (tree.size() == 1) {
+      BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_3");
+      return "()"; // PI = 3, S = 2
+    }
     final int n = tree.size();
 
     int root = findTreeCenters(tree).get(0);
@@ -78,48 +87,66 @@ public class TreeIsomorphismWithBfs {
     q.offer(root);
 
     // Do a BFS to find all the leaf nodes
-    while (!q.isEmpty()) {
+    while (!q.isEmpty()) { // PI = 4, S = 1
+      BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_4");
       int at = q.poll();
       List<Integer> edges = tree.get(at);
       degree[at] = edges.size();
-      for (int next : edges) {
-        if (!visited[next]) {
+      for (int next : edges) { // PI = 5, S = 1
+        BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_5");
+        if (!visited[next]) { // PI = 6, S = 1
+          BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_6");
           visited[next] = true;
           parent[next] = at;
           q.offer(next);
         }
       }
-      if (degree[at] == 1) leafs.add(at);
+      if (degree[at] == 1) {
+        BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_7");
+        leafs.add(at); // PI = 7, S = 1
+      }
     }
 
     List<Integer> newLeafs = new ArrayList<>();
     String[] map = new String[n];
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) { // PI = 8, S = 1
+      BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_8");
       visited[i] = false;
       map[i] = "()";
     }
 
     int treeSize = n;
-    while (treeSize > 2) {
-      for (int leaf : leafs) {
+    while (treeSize > 2) { // PI = 9, S = 1
+      BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_9");
+      for (int leaf : leafs) { // PI = 10, S = 1
+        BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_10");
 
         // Find parent of leaf node and check if the parent
         // is a candidate for the next cycle of leaf nodes
         visited[leaf] = true;
         int p = parent[leaf];
-        if (--degree[p] == 1) newLeafs.add(p);
+        if (--degree[p] == 1) {
+          BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_11");
+          newLeafs.add(p); // PI = 11, S = 1
+        }
 
         treeSize--;
       }
 
       // Update parent labels
-      for (int p : newLeafs) {
+      for (int p : newLeafs) { // P = 12, S = 1
+        BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_12");
 
         List<String> labels = new ArrayList<>();
-        for (int child : tree.get(p))
+        for (int child : tree.get(p)) { // PI = 13, S = 1
+          BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_13");
           // Recall edges are bidirectional so we don't want to
           // access the parent's parent here.
-          if (visited[child]) labels.add(map[child]);
+          if (visited[child]) {
+            BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_14");
+            labels.add(map[child]); // PI = 14, S = 1
+          }
+        }
 
         String parentInnerParentheses = map[p].substring(1, map[p].length() - 1);
         labels.add(parentInnerParentheses);
@@ -135,11 +162,17 @@ public class TreeIsomorphismWithBfs {
 
     // Only one node remains and it holds the canonical form
     String l1 = map[leafs.get(0)];
-    if (treeSize == 1) return l1;
+    if (treeSize == 1) {
+      BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_15");
+      return l1; // PI = 15, S = 3
+    }
 
     // Two nodes remain and we need to combine their labels
     String l2 = map[leafs.get(1)];
-    return ((l1.compareTo(l2) < 0) ? (l1 + l2) : (l2 + l1));
+    if (l1.compareTo(l2) < 0)
+      BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_16");
+    else BranchCoverageAnalyser.markCovered("TreeIsomorphismWithBfs.encodeTree.ID_17");
+    return ((l1.compareTo(l2) < 0) ? (l1 + l2) : (l2 + l1)); // PI = 16, S = 4
   }
 
   public static boolean treesAreIsomorphic(List<List<Integer>> tree1, List<List<Integer>> tree2) {
