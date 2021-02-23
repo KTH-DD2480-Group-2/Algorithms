@@ -2,6 +2,9 @@ package com.williamfiset.algorithms.datastructures.quadtree;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -220,12 +223,11 @@ public class QuadTreeTest {
     }
   }
 
-  /*
   @Test
   public void testKNN1() {
 
     int W = 99, H = 99, NUM_NODES = 2;
-    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0,0,W,H), NUM_NODES);
+    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0, 0, W, H), NUM_NODES);
 
     int x = 46, y = 92, k = 7;
 
@@ -250,8 +252,8 @@ public class QuadTreeTest {
 
     // NE quadrant target points
     quadTree.add(52, y);
-    quadTree.add(52, y+1);
-    quadTree.add(52, y-1);
+    quadTree.add(52, y + 1);
+    quadTree.add(52, y - 1);
 
     List<QuadTree.Pt> points = quadTree.kNearestNeighbors(k, x, y);
     System.out.println(points);
@@ -264,8 +266,5 @@ public class QuadTreeTest {
     for (QuadTree.SortedPt p : sPoints) {
       System.out.println(p);
     }
-
   }
-  */
-
 }

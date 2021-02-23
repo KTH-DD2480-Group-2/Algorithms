@@ -32,7 +32,7 @@ public class BranchCoverageAnalyser {
   }
 
   public static void markCovered(String branchId) {
-    
+
     if (branchId == null || branchId.equals("")) return;
     if (alreadyMarkedBranch(branchId)) return;
 

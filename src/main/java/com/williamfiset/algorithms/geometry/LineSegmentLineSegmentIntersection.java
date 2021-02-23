@@ -10,12 +10,11 @@
  */
 package com.williamfiset.algorithms.geometry;
 
-import com.williamfiset.algorithms.utils.BranchCoverageAnalyser;
-
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
+import com.williamfiset.algorithms.utils.BranchCoverageAnalyser;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,34 +41,42 @@ public class LineSegmentLineSegmentIntersection {
   // segments, segments which are points (x1 = x2 and y1 = y2) are allowed.
   public static Pt[] lineSegmentLineSegmentIntersection(Pt p1, Pt p2, Pt p3, Pt p4) {
 
-
     // Branch coverage
     if (!segmentsIntersect(p1, p2, p3, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_1");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_1");
     } else {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_2");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_2");
     }
     // No intersection.
     if (!segmentsIntersect(p1, p2, p3, p4)) return new Pt[] {};
 
-
     // Branch coverage
     if (p1.equals(p2) && p2.equals(p3) && p3.equals(p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_3");
-    } else if (p1.equals(p2) && p2.equals(p3) && !p3.equals(p4)){
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_4");
-    } else if (p1.equals(p2) && !p2.equals(p3) && p3.equals(p4)){
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_5");
-    } else if (p1.equals(p2) && !p2.equals(p3) && !p3.equals(p4)){
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_6");
-    } else if (!p1.equals(p2) && p2.equals(p3) && p3.equals(p4)){
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_7");
-    } else if (!p1.equals(p2) && p2.equals(p3) && !p3.equals(p4)){
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_8");
-    } else if (!p1.equals(p2) && !p2.equals(p3) && p3.equals(p4)){
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_9");
-    } else if (!p1.equals(p2) && !p2.equals(p3) && !p3.equals(p4)){
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_10");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_3");
+    } else if (p1.equals(p2) && p2.equals(p3) && !p3.equals(p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_4");
+    } else if (p1.equals(p2) && !p2.equals(p3) && p3.equals(p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_5");
+    } else if (p1.equals(p2) && !p2.equals(p3) && !p3.equals(p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_6");
+    } else if (!p1.equals(p2) && p2.equals(p3) && p3.equals(p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_7");
+    } else if (!p1.equals(p2) && p2.equals(p3) && !p3.equals(p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_8");
+    } else if (!p1.equals(p2) && !p2.equals(p3) && p3.equals(p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_9");
+    } else if (!p1.equals(p2) && !p2.equals(p3) && !p3.equals(p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_10");
     }
     // Both segments are a single point.
     if (p1.equals(p2) && p2.equals(p3) && p3.equals(p4)) return new Pt[] {p1};
@@ -79,21 +86,29 @@ public class LineSegmentLineSegmentIntersection {
 
     // Branch coverage
     if (n == 1 && p1.equals(p2) || p3.equals(p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_11");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_11");
     } else if ((n == 1) && p1.equals(p2) || !p3.equals(p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_12");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_12");
     } else if ((n == 1) && !p1.equals(p2) || p3.equals(p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_13");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_13");
     } else if ((n == 1) && !p1.equals(p2) || !p3.equals(p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_14");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_14");
     } else if (!(n == 1) && p1.equals(p2) || p3.equals(p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_15");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_15");
     } else if (!(n == 1) && p1.equals(p2) || !p3.equals(p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_16");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_16");
     } else if (!(n == 1) && !p1.equals(p2) || p3.equals(p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_17");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_17");
     } else if (!(n == 1) && !p1.equals(p2) || !p3.equals(p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_18");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_18");
     }
     // One of the line segments is an intersecting single point.
     // NOTE: checking only n == 1 is insufficient to return early
@@ -102,10 +117,12 @@ public class LineSegmentLineSegmentIntersection {
     if (n == 1 && singleton) return new Pt[] {endpoints.get(0)};
 
     // Branch coverage
-    if (n==2) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_19");
+    if (n == 2) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_19");
     } else {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_20");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_20");
     }
     // Segments are equal.
     if (n == 2) return new Pt[] {endpoints.get(0), endpoints.get(1)};
@@ -113,38 +130,102 @@ public class LineSegmentLineSegmentIntersection {
     boolean collinearSegments = (orientation(p1, p2, p3) == 0) && (orientation(p1, p2, p4) == 0);
 
     // Branch coverage
-    if (orientation(p1, p2, p3) == 0 && orientation(p1, p2, p4) == 0 && pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_21");
-    } else if (orientation(p1, p2, p3) == 0 && orientation(p1, p2, p4) == 0 && pointOnLine(p1, p2, p3) && !pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_22");
-    } else if (orientation(p1, p2, p3) == 0 && orientation(p1, p2, p4) == 0 && !pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_23");
-    } else if (orientation(p1, p2, p3) == 0 && (orientation(p1, p2, p4) == 0) && !pointOnLine(p1, p2, p3) && !pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_24");
-    } else if (orientation(p1, p2, p3) == 0 && !(orientation(p1, p2, p4) == 0) && pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_25");
-    } else if (orientation(p1, p2, p3) == 0 && !(orientation(p1, p2, p4) == 0) && pointOnLine(p1, p2, p3) && !pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_26");
-    } else if (orientation(p1, p2, p3) == 0 && !(orientation(p1, p2, p4) == 0) && !pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_27");
-    } else if (orientation(p1, p2, p3) == 0 && !(orientation(p1, p2, p4) == 0) && !pointOnLine(p1, p2, p3) && !pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_28");
-    } else if (!(orientation(p1, p2, p3) == 0) && orientation(p1, p2, p4) == 0 && pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_29");
-    } else if (!(orientation(p1, p2, p3) == 0) && orientation(p1, p2, p4) == 0 && pointOnLine(p1, p2, p3) && !pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_30");
-    } else if (!(orientation(p1, p2, p3) == 0) && orientation(p1, p2, p4) == 0 && !pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_31");
-    } else if (!(orientation(p1, p2, p3) == 0) && orientation(p1, p2, p4) == 0 && !pointOnLine(p1, p2, p3) && !pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_32");
-    } else if (!(orientation(p1, p2, p3) == 0) && !(orientation(p1, p2, p4) == 0) && pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_33");
-    } else if (!(orientation(p1, p2, p3) == 0) && !(orientation(p1, p2, p4) == 0) && pointOnLine(p1, p2, p3) && !pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_34");
-    } else if (!(orientation(p1, p2, p3) == 0) && !(orientation(p1, p2, p4) == 0) && !pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_35");
-    } else if (!(orientation(p1, p2, p3) == 0) && !(orientation(p1, p2, p4) == 0) && !pointOnLine(p1, p2, p3) && !pointOnLine(p1, p2, p4)) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_36");
+    if (orientation(p1, p2, p3) == 0
+        && orientation(p1, p2, p4) == 0
+        && pointOnLine(p1, p2, p3)
+        && pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_21");
+    } else if (orientation(p1, p2, p3) == 0
+        && orientation(p1, p2, p4) == 0
+        && pointOnLine(p1, p2, p3)
+        && !pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_22");
+    } else if (orientation(p1, p2, p3) == 0
+        && orientation(p1, p2, p4) == 0
+        && !pointOnLine(p1, p2, p3)
+        && pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_23");
+    } else if (orientation(p1, p2, p3) == 0
+        && (orientation(p1, p2, p4) == 0)
+        && !pointOnLine(p1, p2, p3)
+        && !pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_24");
+    } else if (orientation(p1, p2, p3) == 0
+        && !(orientation(p1, p2, p4) == 0)
+        && pointOnLine(p1, p2, p3)
+        && pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_25");
+    } else if (orientation(p1, p2, p3) == 0
+        && !(orientation(p1, p2, p4) == 0)
+        && pointOnLine(p1, p2, p3)
+        && !pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_26");
+    } else if (orientation(p1, p2, p3) == 0
+        && !(orientation(p1, p2, p4) == 0)
+        && !pointOnLine(p1, p2, p3)
+        && pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_27");
+    } else if (orientation(p1, p2, p3) == 0
+        && !(orientation(p1, p2, p4) == 0)
+        && !pointOnLine(p1, p2, p3)
+        && !pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_28");
+    } else if (!(orientation(p1, p2, p3) == 0)
+        && orientation(p1, p2, p4) == 0
+        && pointOnLine(p1, p2, p3)
+        && pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_29");
+    } else if (!(orientation(p1, p2, p3) == 0)
+        && orientation(p1, p2, p4) == 0
+        && pointOnLine(p1, p2, p3)
+        && !pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_30");
+    } else if (!(orientation(p1, p2, p3) == 0)
+        && orientation(p1, p2, p4) == 0
+        && !pointOnLine(p1, p2, p3)
+        && pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_31");
+    } else if (!(orientation(p1, p2, p3) == 0)
+        && orientation(p1, p2, p4) == 0
+        && !pointOnLine(p1, p2, p3)
+        && !pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_32");
+    } else if (!(orientation(p1, p2, p3) == 0)
+        && !(orientation(p1, p2, p4) == 0)
+        && pointOnLine(p1, p2, p3)
+        && pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_33");
+    } else if (!(orientation(p1, p2, p3) == 0)
+        && !(orientation(p1, p2, p4) == 0)
+        && pointOnLine(p1, p2, p3)
+        && !pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_34");
+    } else if (!(orientation(p1, p2, p3) == 0)
+        && !(orientation(p1, p2, p4) == 0)
+        && !pointOnLine(p1, p2, p3)
+        && pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_35");
+    } else if (!(orientation(p1, p2, p3) == 0)
+        && !(orientation(p1, p2, p4) == 0)
+        && !pointOnLine(p1, p2, p3)
+        && !pointOnLine(p1, p2, p4)) {
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_36");
     }
     // The intersection will be a sub-segment of the two
     // segments since they overlap each other.
@@ -158,17 +239,31 @@ public class LineSegmentLineSegmentIntersection {
 
       // The subsegment is part of segment #1 and part of segment #2.
       // Find the middle points which correspond to this segment.
-      //Pt midPoint1 = pointOnLine(p1, p2, p3) ? p3 : p4;
-      Pt midPoint1 = pointOnLine(p1, p2, p3) ? BranchCoverageAnalyser.markCoveredValue("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_37", p3) : BranchCoverageAnalyser.markCoveredValue("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_38", p4);
-      //Pt midPoint2 = pointOnLine(p3, p4, p1) ? p1 : p2;
-      Pt midPoint2 = pointOnLine(p3, p4, p1) ? BranchCoverageAnalyser.markCoveredValue("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_39", p1) : BranchCoverageAnalyser.markCoveredValue("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_40", p2);
+      // Pt midPoint1 = pointOnLine(p1, p2, p3) ? p3 : p4;
+      Pt midPoint1 =
+          pointOnLine(p1, p2, p3)
+              ? BranchCoverageAnalyser.markCoveredValue(
+                  "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_37", p3)
+              : BranchCoverageAnalyser.markCoveredValue(
+                  "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_38",
+                  p4);
+      // Pt midPoint2 = pointOnLine(p3, p4, p1) ? p1 : p2;
+      Pt midPoint2 =
+          pointOnLine(p3, p4, p1)
+              ? BranchCoverageAnalyser.markCoveredValue(
+                  "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_39", p1)
+              : BranchCoverageAnalyser.markCoveredValue(
+                  "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_40",
+                  p2);
 
       // There is actually only one middle point!
       if (midPoint1.equals(midPoint2)) {
-        BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_41");
-      return new Pt[] {midPoint1} ;
+        BranchCoverageAnalyser.markCovered(
+            "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_41");
+        return new Pt[] {midPoint1};
       } else {
-        BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_42");
+        BranchCoverageAnalyser.markCovered(
+            "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_42");
       }
 
       return new Pt[] {midPoint1, midPoint2};
@@ -178,22 +273,26 @@ public class LineSegmentLineSegmentIntersection {
 
     // Segment #1 is a vertical line.
     if (abs(p1.x - p2.x) < EPS) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_43");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_43");
       double m = (p4.y - p3.y) / (p4.x - p3.x);
       double b = p3.y - m * p3.x;
       return new Pt[] {new Pt(p1.x, m * p1.x + b)};
     } else {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_44");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_44");
     }
 
     // Segment #2 is a vertical line.
     if (abs(p3.x - p4.x) < EPS) {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_45");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_45");
       double m = (p2.y - p1.y) / (p2.x - p1.x);
       double b = p1.y - m * p1.x;
       return new Pt[] {new Pt(p3.x, m * p3.x + b)};
     } else {
-      BranchCoverageAnalyser.markCovered("LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_46");
+      BranchCoverageAnalyser.markCovered(
+          "LineSegmentLineSegmentIntersection.lineSegmentLineSegmentIntersection.id_46");
     }
 
     double m1 = (p2.y - p1.y) / (p2.x - p1.x);
