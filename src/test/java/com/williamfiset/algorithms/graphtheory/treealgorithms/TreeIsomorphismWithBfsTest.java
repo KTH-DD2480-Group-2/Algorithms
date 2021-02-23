@@ -179,4 +179,11 @@ public class TreeIsomorphismWithBfsTest {
     String treesString = encodeTree(null);
     assertThat(treesString).isEqualTo("");
   }
+
+  @Test
+  public void emptyTest(){
+    List<List<Integer>> tree = createEmptyTree(0);
+    String treesString = encodeTree(tree);
+    assertThat(treesString).isEqualTo("");
+  }
 }
