@@ -22,6 +22,8 @@ public class TreePrinter {
   // Print a binary tree.
   public static String getTreeDisplay(PrintableNode root) {
 
+    if (root == null) return null;
+
     StringBuilder sb = new StringBuilder();
     List<List<String>> lines = new ArrayList<List<String>>();
     List<PrintableNode> level = new ArrayList<PrintableNode>();
@@ -41,6 +43,7 @@ public class TreePrinter {
           next.add(null);
         } else {
           String aa = n.getText();
+          if (aa == null) aa = "NULL";
           line.add(aa);
           if (aa.length() > widest) widest = aa.length();
 
