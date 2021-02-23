@@ -32,11 +32,12 @@ public class BranchCoverageAnalyser {
   }
 
   public static void markCovered(String branchId) {
-    FileWriter fileWriter = getResultFileWriter();
-
+    
     if (branchId == null || branchId.equals("")) return;
-    if (fileWriter == null) return;
     if (alreadyMarkedBranch(branchId)) return;
+
+    FileWriter fileWriter = getResultFileWriter();
+    if (fileWriter == null) return;
 
     try {
       fileWriter.append(branchId + "\n");
