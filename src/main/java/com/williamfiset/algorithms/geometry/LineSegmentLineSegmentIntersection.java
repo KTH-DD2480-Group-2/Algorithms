@@ -36,6 +36,58 @@ public class LineSegmentLineSegmentIntersection {
     }
   }
 
+  private static Pt[] collinearSegmentsIntersection(Pt p1, Pt p2, Pt p3, Pt p4) {
+    // Segment #2 is enclosed in segment #1
+    if (pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) return new Pt[] {p3, p4};
+
+    // Segment #1 is enclosed in segment #2
+    if (pointOnLine(p3, p4, p1) && pointOnLine(p3, p4, p2)) return new Pt[] {p1, p2};
+
+    // The subsegment is part of segment #1 and part of segment #2.
+    // Find the middle points which correspond to this segment.
+    Pt midPoint1 = pointOnLine(p1, p2, p3) ? p3 : p4;
+    Pt midPoint2 = pointOnLine(p3, p4, p1) ? p1 : p2;
+
+    // There is actually only one middle point!
+    if (midPoint1.equals(midPoint2)) return new Pt[] {midPoint1};
+
+    return new Pt[] {midPoint1, midPoint2};
+  }
+
+  private static double calculateB(Pt p, double m) {
+    return p.y - m * p.x;
+  }
+
+  private static double calculateM(Pt p1, Pt p2) {
+    return (p2.y - p1.y) / (p2.x - p1.x);
+  }
+
+  private static Pt[] uniqueLineIntersection(Pt p1, Pt p2, Pt p3, Pt p4) {
+    // Segment #1 is a vertical line.
+    if (abs(p1.x - p2.x) < EPS) {
+      double m = calculateM(p3, p4);
+      double b = calculateB(p3, m);
+      return new Pt[] {new Pt(p1.x, m * p1.x + b)};
+    }
+
+    // Segment #2 is a vertical line.
+    if (abs(p3.x - p4.x) < EPS) {
+      double m = calculateM(p1, p2);
+      double b = calculateB(p1, m);
+      return new Pt[] {new Pt(p3.x, m * p3.x + b)};
+    }
+
+    double m1 = calculateM(p1, p2);
+    double m2 = calculateM(p3, p4);
+    double b1 = calculateB(p1, m1);
+    double b2 = calculateB(p3, m2);
+
+    double x = (b2 - b1) / (m1 - m2);
+    double y = (m1 * b2 - m2 * b1) / (m1 - m2);
+
+    return new Pt[] {new Pt(x, y)};
+  }
+
   // Finds the intersection point(s) of two line segments. Unlike regular line
   // segments, segments which are points (x1 = x2 and y1 = y2) are allowed.
   public static Pt[] lineSegmentLineSegmentIntersection(Pt p1, Pt p2, Pt p3, Pt p4) {
@@ -61,59 +113,10 @@ public class LineSegmentLineSegmentIntersection {
     boolean collinearSegments = (orientation(p1, p2, p3) == 0) && (orientation(p1, p2, p4) == 0);
 
     // The intersection will be a sub-segment of the two
-    // segments since they overlap each other.
+    // or a single intersection point
+    Pt[] res = collinearSegments ? collinearSegmentsIntersection(p1, p2, p3, p4) : uniqueLineIntersection(p1, p2, p3, p4);
+    return res;
 
-    // Refactor plan: Create helper function to deal with this if case and the else-case. The if-case deals with segments that are enclosed within each other,
-    // the else case deals with the case where we have a single intersection point
-    if (collinearSegments) {
-
-      // Segment #2 is enclosed in segment #1
-      if (pointOnLine(p1, p2, p3) && pointOnLine(p1, p2, p4)) return new Pt[] {p3, p4};
-
-      // Segment #1 is enclosed in segment #2
-      if (pointOnLine(p3, p4, p1) && pointOnLine(p3, p4, p2)) return new Pt[] {p1, p2};
-
-      // The subsegment is part of segment #1 and part of segment #2.
-      // Find the middle points which correspond to this segment.
-      Pt midPoint1 = pointOnLine(p1, p2, p3) ? p3 : p4;
-      Pt midPoint2 = pointOnLine(p3, p4, p1) ? p1 : p2;
-
-      // There is actually only one middle point!
-      if (midPoint1.equals(midPoint2)) return new Pt[] {midPoint1};
-
-      return new Pt[] {midPoint1, midPoint2};
-    }
-
-    /* Beyond this point there is a unique intersection point. */
-
-    // Segment #1 is a vertical line.
-    if (abs(p1.x - p2.x) < EPS) {
-      // Refactor plan: add helper function to calculate m
-      double m = (p4.y - p3.y) / (p4.x - p3.x);
-      // Refactor plan: add helper function to calculate b
-      double b = p3.y - m * p3.x;
-      return new Pt[] {new Pt(p1.x, m * p1.x + b)};
-    }
-
-    // Segment #2 is a vertical line.
-    if (abs(p3.x - p4.x) < EPS) {
-      // Refactor plan: add helper function to calculate m
-      double m = (p2.y - p1.y) / (p2.x - p1.x);
-      // Refactor plan: add helper function to calculate b
-      double b = p1.y - m * p1.x;
-      return new Pt[] {new Pt(p3.x, m * p3.x + b)};
-    }
-
-    // Refactor plan: add helper function to calculate m
-    double m1 = (p2.y - p1.y) / (p2.x - p1.x);
-    double m2 = (p4.y - p3.y) / (p4.x - p3.x);
-    // Refactor plan: add helper function to calculate b
-    double b1 = p1.y - m1 * p1.x;
-    double b2 = p3.y - m2 * p3.x;
-    double x = (b2 - b1) / (m1 - m2);
-    double y = (m1 * b2 - m2 * b1) / (m1 - m2);
-
-    return new Pt[] {new Pt(x, y)};
   }
 
   // Finds the orientation of point 'c' relative to the line segment (a, b)
