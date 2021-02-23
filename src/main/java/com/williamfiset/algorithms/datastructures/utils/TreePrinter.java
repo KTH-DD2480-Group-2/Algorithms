@@ -2,9 +2,8 @@
 // https://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram
 package com.williamfiset.algorithms.datastructures.utils;
 
-import java.util.*;
-
 import com.williamfiset.algorithms.utils.BranchCoverageAnalyser;
+import java.util.*;
 
 public class TreePrinter {
 
@@ -96,9 +95,12 @@ public class TreePrinter {
             BranchCoverageAnalyser.markCovered("TreePrinter.getTreeDisplay.ID_13");
             if (line.get(j - 1) != null) {
               BranchCoverageAnalyser.markCovered("TreePrinter.getTreeDisplay.ID_14");
-              c = (line.get(j) != null) 
-                ? BranchCoverageAnalyser.markCoveredValue("TreePrinter.getTreeDisplay.ID_14", '#')
-                : BranchCoverageAnalyser.markCoveredValue("TreePrinter.getTreeDisplay.ID_15", '#');
+              c =
+                  (line.get(j) != null)
+                      ? BranchCoverageAnalyser.markCoveredValue(
+                          "TreePrinter.getTreeDisplay.ID_14", '#')
+                      : BranchCoverageAnalyser.markCoveredValue(
+                          "TreePrinter.getTreeDisplay.ID_15", '#');
             } else {
               BranchCoverageAnalyser.markCovered("TreePrinter.getTreeDisplay.ID_16");
               if (j < line.size() && line.get(j) != null) {
@@ -121,22 +123,25 @@ public class TreePrinter {
             for (int k = 0; k < hpw; k++) {
               BranchCoverageAnalyser.markCovered("TreePrinter.getTreeDisplay.ID_21");
               sb.append(
-                j % 2 == 0 
-                  ? BranchCoverageAnalyser.markCoveredValue("TreePrinter.getTreeDisplay.ID_22", " ")
-                  : BranchCoverageAnalyser.markCoveredValue("TreePrinter.getTreeDisplay.ID_23", "#")
-              );
+                  j % 2 == 0
+                      ? BranchCoverageAnalyser.markCoveredValue(
+                          "TreePrinter.getTreeDisplay.ID_22", " ")
+                      : BranchCoverageAnalyser.markCoveredValue(
+                          "TreePrinter.getTreeDisplay.ID_23", "#"));
             }
             sb.append(
-              j % 2 == 0 
-                ? BranchCoverageAnalyser.markCoveredValue("TreePrinter.getTreeDisplay.ID_24", "#")
-                : BranchCoverageAnalyser.markCoveredValue("TreePrinter.getTreeDisplay.ID_25", "#")
-            );
+                j % 2 == 0
+                    ? BranchCoverageAnalyser.markCoveredValue(
+                        "TreePrinter.getTreeDisplay.ID_24", "#")
+                    : BranchCoverageAnalyser.markCoveredValue(
+                        "TreePrinter.getTreeDisplay.ID_25", "#"));
             for (int k = 0; k < hpw; k++) {
               sb.append(
-                j % 2 == 0 
-                  ? BranchCoverageAnalyser.markCoveredValue("TreePrinter.getTreeDisplay.ID_26", "#")
-                  : BranchCoverageAnalyser.markCoveredValue("TreePrinter.getTreeDisplay.ID_27", " ")
-              );
+                  j % 2 == 0
+                      ? BranchCoverageAnalyser.markCoveredValue(
+                          "TreePrinter.getTreeDisplay.ID_26", "#")
+                      : BranchCoverageAnalyser.markCoveredValue(
+                          "TreePrinter.getTreeDisplay.ID_27", " "));
             }
           }
         }
