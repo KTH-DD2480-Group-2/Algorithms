@@ -1,5 +1,6 @@
-package com.williamfiset.algorithms;
+package com.williamfiset.algorithms.utils;
 
+import com.williamfiset.algorithms.utils.CoverageStatistics;
 import org.junit.*;
 
 import static com.google.common.truth.Truth.assertThat;

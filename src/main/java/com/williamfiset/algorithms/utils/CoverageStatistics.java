@@ -1,11 +1,10 @@
-package com.williamfiset.algorithms;
+package com.williamfiset.algorithms.utils;
 
-import java.io.File;
+import java.io.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
 
 public class CoverageStatistics {
 //    public static void creat() throws IOException {
@@ -16,9 +15,11 @@ public class CoverageStatistics {
 //        writer.close();
 //    }
 
-    public static void getStatistics(String allBranchFile, String visitedBranchFile) {
+    public static void getStatistics(String allBranchFile, String visitedBranchFile) throws IOException {
         HashMap<String, HashSet<String>> allBranchSet = getBranchSet(allBranchFile);
         HashMap<String, HashSet<String>> visitedBranchSet = getBranchSet(visitedBranchFile);
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("./build/reports/DIY-Coverage-Report.txt"));
 
         for (Map.Entry<String, HashSet<String>> entry : allBranchSet.entrySet()) {
             int total = entry.getValue().size();
@@ -27,9 +28,10 @@ public class CoverageStatistics {
                 visited = visitedBranchSet.get(entry.getKey()).size();
             else
                 visited = 0;
-            float coverage = (float) visited / total;
-            System.out.println(entry.getKey() + ": Total=" + total + ", Visited=" + visited + ", Coverage=" + coverage + "%");
+            float coverage = (float) visited * 100 / total;
+            writer.write(entry.getKey() + ": Total=" + total + ", Visited=" + visited + ", Coverage=" + coverage + "%\n");
         }
+        writer.close();
     }
 
     private static HashMap<String, HashSet<String>> getBranchSet(String branchFile) {
