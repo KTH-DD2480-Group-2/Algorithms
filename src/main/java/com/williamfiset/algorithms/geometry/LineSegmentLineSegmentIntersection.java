@@ -62,6 +62,9 @@ public class LineSegmentLineSegmentIntersection {
 
     // The intersection will be a sub-segment of the two
     // segments since they overlap each other.
+
+    // Refactor plan: Create helper function to deal with this if case and the else-case. The if-case deals with segments that are enclosed within each other,
+    // the else case deals with the case where we have a single intersection point
     if (collinearSegments) {
 
       // Segment #2 is enclosed in segment #1
@@ -85,20 +88,26 @@ public class LineSegmentLineSegmentIntersection {
 
     // Segment #1 is a vertical line.
     if (abs(p1.x - p2.x) < EPS) {
+      // Refactor plan: add helper function to calculate m
       double m = (p4.y - p3.y) / (p4.x - p3.x);
+      // Refactor plan: add helper function to calculate b
       double b = p3.y - m * p3.x;
       return new Pt[] {new Pt(p1.x, m * p1.x + b)};
     }
 
     // Segment #2 is a vertical line.
     if (abs(p3.x - p4.x) < EPS) {
+      // Refactor plan: add helper function to calculate m
       double m = (p2.y - p1.y) / (p2.x - p1.x);
+      // Refactor plan: add helper function to calculate b
       double b = p1.y - m * p1.x;
       return new Pt[] {new Pt(p3.x, m * p3.x + b)};
     }
 
+    // Refactor plan: add helper function to calculate m
     double m1 = (p2.y - p1.y) / (p2.x - p1.x);
     double m2 = (p4.y - p3.y) / (p4.x - p3.x);
+    // Refactor plan: add helper function to calculate b
     double b1 = p1.y - m1 * p1.x;
     double b2 = p3.y - m2 * p3.x;
     double x = (b2 - b1) / (m1 - m2);
