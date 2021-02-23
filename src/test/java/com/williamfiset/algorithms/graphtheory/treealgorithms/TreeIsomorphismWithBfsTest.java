@@ -173,4 +173,10 @@ public class TreeIsomorphismWithBfsTest {
     //             ((())())
     //
   }
+
+  @Test
+  public void nullTest(){
+    String treesString = encodeTree(null);
+    assertThat(treesString).isEqualTo("");
+  }
 }
