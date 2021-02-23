@@ -29,6 +29,7 @@ repositories {
 // Describe all project deps. Use 'testCompile' for test dependencies and
 // 'compile' for project dependencies.
 dependencies {
+  compileJava.dependsOn 'googleJavaFormat'
   // Apache commons lang
   testCompile 'org.apache.commons:commons-lang3:3.6'
 

@@ -55,5 +55,4 @@ public class BranchCoverageAnalyser {
   private static boolean alreadyMarkedBranch(String branchId) {
     return branchesCoveredCache.contains(branchId);
   }
-
 }

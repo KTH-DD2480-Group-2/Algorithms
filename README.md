@@ -8,9 +8,11 @@ Algorithms and data structures are fundamental to efficient code and good softwa
 
 # DD2480 - Group 2 Paragraph
 ## DIY Branch Coverage tool
-Use the `BranchCoverageAnalyser` to mark all the branches in you function. See the `getTreeDisplay()` in `TreePrinter.java` for a full example how it should be used. Remember to also put all the branch ids that you create in the `diy-branch-coverage-control.txt` file.
+Use the `BranchCoverageAnalyser` to mark all the branches in you function. See the `getTreeDisplay()` in `TreePrinter.java` for a full example how it should be used (The example is not perfect however, many branches are not checked). Remember to also put all the branch ids that you create in the `diy-branch-coverage-control.txt` file.
 
 **Pro tip!** In order to also cover conditional expression, you can use the `BranchCoverageAnalyser.markCoveredValue()` function. See line 100 in `getTreeDisplay()`.
+
+To see the statistics report run gradle build first and then execute `com.williamfiset.algorithms.utils.CoverageStatistics.main()`. The report will be generated in `build/reports/DIY-Coverage-Report.txt`
 ## Lizard Results
 
 NLOC  |  CCN  | token | PARAM | length | location
