@@ -13,6 +13,8 @@
  */
 package com.williamfiset.algorithms.datastructures.segmenttree;
 
+import com.williamfiset.algorithms.utils.BranchCoverageAnalyser;
+
 import java.util.function.BinaryOperator;
 
 public class GenericSegmentTree {
@@ -167,13 +169,22 @@ public class GenericSegmentTree {
       SegmentCombinationFn segmentCombinationFunction,
       RangeUpdateFn rangeUpdateFunction) {
     if (values == null) {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_1");
       throw new IllegalArgumentException("Segment tree values cannot be null.");
+    } else {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_2");
     }
     if (segmentCombinationFunction == null) {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_3");
       throw new IllegalArgumentException("Please specify a valid segment combination function.");
+    } else {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_4");
     }
     if (rangeUpdateFunction == null) {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_5");
       throw new IllegalArgumentException("Please specify a valid range update function.");
+    } else {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_6");
     }
     n = values.length;
 
@@ -189,66 +200,97 @@ public class GenericSegmentTree {
 
     // Select the specified combination function
     if (segmentCombinationFunction == SegmentCombinationFn.SUM) {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_7");
       combinationFn = sumCombinationFn;
       if (rangeUpdateFunction == RangeUpdateFn.ADDITION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_13");
         ruf = sumQuerySumUpdate;
         lruf = lsumQuerySumUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.ASSIGN) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_14");
         ruf = sumQueryAssignUpdate;
         lruf = lsumQueryAssignUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.MULTIPLICATION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_15");
         ruf = sumQueryMulUpdate;
         lruf = lsumQueryMulUpdate;
+      } else {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_16");
       }
     } else if (segmentCombinationFunction == SegmentCombinationFn.MIN) {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_8");
       combinationFn = minCombinationFn;
       if (rangeUpdateFunction == RangeUpdateFn.ADDITION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_17");
         ruf = minQuerySumUpdate;
         lruf = lminQuerySumUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.ASSIGN) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_18");
         ruf = minQueryAssignUpdate;
         lruf = lminQueryAssignUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.MULTIPLICATION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_19");
         ruf = minQueryMulUpdate;
         lruf = lminQueryMulUpdate;
+      } else {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_20");
       }
     } else if (segmentCombinationFunction == SegmentCombinationFn.MAX) {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_9");
       combinationFn = maxCombinationFn;
       if (rangeUpdateFunction == RangeUpdateFn.ADDITION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_21");
         ruf = maxQuerySumUpdate;
         lruf = lmaxQuerySumUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.ASSIGN) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_22");
         ruf = maxQueryAssignUpdate;
         lruf = lmaxQueryAssignUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.MULTIPLICATION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_23");
         ruf = maxQueryMulUpdate;
         lruf = lmaxQueryMulUpdate;
+      } else {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_24");
       }
     } else if (segmentCombinationFunction == SegmentCombinationFn.GCD) {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_10");
       combinationFn = gcdCombinationFn;
       if (rangeUpdateFunction == RangeUpdateFn.ADDITION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_25");
         ruf = gcdQuerySumUpdate;
         lruf = lgcdQuerySumUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.ASSIGN) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_26");
         ruf = gcdQueryAssignUpdate;
         lruf = lgcdQueryAssignUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.MULTIPLICATION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_27");
         ruf = gcdQueryMulUpdate;
         lruf = lgcdQueryMulUpdate;
+      } else {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_28");
       }
     } else if (segmentCombinationFunction == SegmentCombinationFn.PRODUCT) {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_11");
       combinationFn = productCombinationFn;
       if (rangeUpdateFunction == RangeUpdateFn.ADDITION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_29");
         ruf = productQuerySumUpdate;
         lruf = lproductQuerySumUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.ASSIGN) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_30");
         ruf = productQueryAssignUpdate;
         lruf = lproductQueryAssignUpdate;
       } else if (rangeUpdateFunction == RangeUpdateFn.MULTIPLICATION) {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_31");
         ruf = productQueryMulUpdate;
         lruf = lproductQueryMulUpdate;
+      } else {
+        BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_32");
       }
     } else {
+      BranchCoverageAnalyser.markCovered("GenericSegmentTree.GenericSegmentTree.id_12");
       throw new UnsupportedOperationException(
           "Combination function not supported: " + segmentCombinationFunction);
     }
