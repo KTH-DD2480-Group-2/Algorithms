@@ -188,6 +188,10 @@ public class GenericSegmentTree {
     t = new Long[N];
     lazy = new Long[N];
 
+    // Refactor plan: Move to other function. These if statements check for all combinations of combination functions
+    // and update functions and sets certain values differently depending on which combination. These actions could be
+    // refactored into a separate method in this class.
+
     // Select the specified combination function
     if (segmentCombinationFunction == SegmentCombinationFn.SUM) {
       combinationFn = sumCombinationFn;
