@@ -224,32 +224,17 @@ public class QuadTree {
 
       // TODO(williamfiset): Refactor.
       // Clearly there is a code repetition here which needs to be solved.
-      // This part of the code handles the case when the heap is full but there are still unexamined points
-      // that can be closer. This can be moved to a separate function called findCloserPoints(). This will
-      // eliminate the code duplication, but also will reduce the functions cyclomatic complexity since many
+      // This part of the code handles the case when the heap is full but there are still unexamined
+      // points
+      // that can be closer. This can be moved to a separate function called findCloserPoints().
+      // This will
+      // eliminate the code duplication, but also will reduce the functions cyclomatic complexity
+      // since many
       // nested decisions exist in this part.
       if (heap.size() == k) {
-        if (isNorth(pointQuadrant)) {
-          if (pointQuadrant == NORTH_WEST) {
-            if (checkHorizontalCell) if (ne != null) ne.knn(k, x, y, heap);
-            if (checkVerticalCell) if (sw != null) sw.knn(k, x, y, heap);
-            if (checkDiagonalCell) if (se != null) se.knn(k, x, y, heap);
-          } else {
-            if (checkHorizontalCell) if (nw != null) nw.knn(k, x, y, heap);
-            if (checkVerticalCell) if (se != null) se.knn(k, x, y, heap);
-            if (checkDiagonalCell) if (nw != null) nw.knn(k, x, y, heap);
-          }
-        } else {
-          if (pointQuadrant == SOUTH_WEST) {
-            if (checkHorizontalCell) if (se != null) se.knn(k, x, y, heap);
-            if (checkVerticalCell) if (nw != null) nw.knn(k, x, y, heap);
-            if (checkDiagonalCell) if (ne != null) ne.knn(k, x, y, heap);
-          } else {
-            if (checkHorizontalCell) if (sw != null) sw.knn(k, x, y, heap);
-            if (checkVerticalCell) if (ne != null) ne.knn(k, x, y, heap);
-            if (checkDiagonalCell) if (nw != null) nw.knn(k, x, y, heap);
-          }
-        }
+        findCloserPoints(
+            pointQuadrant, checkHorizontalCell, checkVerticalCell, checkDiagonalCell, x, y, heap);
+
         // Still need to find k - heap.size() nodes!
       } else {
 
@@ -290,31 +275,60 @@ public class QuadTree {
 
             // must intersect
           } else {
-            if (isNorth(pointQuadrant)) {
-              if (pointQuadrant == NORTH_WEST) {
-                if (checkHorizontalCell) if (ne != null) ne.knn(k, x, y, heap);
-                if (checkVerticalCell) if (sw != null) sw.knn(k, x, y, heap);
-                if (checkDiagonalCell) if (se != null) se.knn(k, x, y, heap);
-              } else {
-                if (checkHorizontalCell) if (nw != null) nw.knn(k, x, y, heap);
-                if (checkVerticalCell) if (se != null) se.knn(k, x, y, heap);
-                if (checkDiagonalCell) if (nw != null) nw.knn(k, x, y, heap);
-              }
-            } else {
-              if (pointQuadrant == SOUTH_WEST) {
-                if (checkHorizontalCell) if (se != null) se.knn(k, x, y, heap);
-                if (checkVerticalCell) if (nw != null) nw.knn(k, x, y, heap);
-                if (checkDiagonalCell) if (ne != null) ne.knn(k, x, y, heap);
-              } else {
-                if (checkHorizontalCell) if (sw != null) sw.knn(k, x, y, heap);
-                if (checkVerticalCell) if (ne != null) ne.knn(k, x, y, heap);
-                if (checkDiagonalCell) if (nw != null) nw.knn(k, x, y, heap);
-              }
-            }
+            findCloserPoints(
+                pointQuadrant,
+                checkHorizontalCell,
+                checkVerticalCell,
+                checkDiagonalCell,
+                x,
+                y,
+                heap);
           }
         } // for
       } // if
     } // method
+
+    /**
+     * This Function will search for points closer than those found in the heap.
+     *
+     * @param pointQuadrant Number of points in a quadrant
+     * @param checkHorizontalCell True if there are points in the horizontal adjacent cell
+     * @param checkVerticalCell True if there are points in the vertical adjacent cell
+     * @param checkDiagonalCell True if there are points in the diagonal adjacent cell
+     * @param x The x coordinate of the reference point
+     * @param y The y coordinate of the reference point
+     * @param heap The heap that will contain the nearest points.
+     */
+    private void findCloserPoints(
+        int pointQuadrant,
+        boolean checkHorizontalCell,
+        boolean checkVerticalCell,
+        boolean checkDiagonalCell,
+        long x,
+        long y,
+        PriorityQueue<SortedPt> heap) {
+      if (isNorth(pointQuadrant)) {
+        if (pointQuadrant == NORTH_WEST) {
+          if (checkHorizontalCell) if (ne != null) ne.knn(heap.size(), x, y, heap);
+          if (checkVerticalCell) if (sw != null) sw.knn(heap.size(), x, y, heap);
+          if (checkDiagonalCell) if (se != null) se.knn(heap.size(), x, y, heap);
+        } else {
+          if (checkHorizontalCell) if (nw != null) nw.knn(heap.size(), x, y, heap);
+          if (checkVerticalCell) if (se != null) se.knn(heap.size(), x, y, heap);
+          if (checkDiagonalCell) if (nw != null) nw.knn(heap.size(), x, y, heap);
+        }
+      } else {
+        if (pointQuadrant == SOUTH_WEST) {
+          if (checkHorizontalCell) if (se != null) se.knn(heap.size(), x, y, heap);
+          if (checkVerticalCell) if (nw != null) nw.knn(heap.size(), x, y, heap);
+          if (checkDiagonalCell) if (ne != null) ne.knn(heap.size(), x, y, heap);
+        } else {
+          if (checkHorizontalCell) if (sw != null) sw.knn(heap.size(), x, y, heap);
+          if (checkVerticalCell) if (ne != null) ne.knn(heap.size(), x, y, heap);
+          if (checkDiagonalCell) if (nw != null) nw.knn(heap.size(), x, y, heap);
+        }
+      }
+    }
   } // node
 
   public static class Rect {
