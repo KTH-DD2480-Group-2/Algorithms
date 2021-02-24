@@ -43,6 +43,8 @@ Total nloc | Avg.NLOC | AvgCCN | Avg.token |  Fun Cnt | Warning cnt | Fun Rt | n
   * Create a refactoring plan and refactored
   * documented the process of this assignment.
   * Did also create the DIY coverage analyser
+* Isak: chose `encodeTree()` in `TreeIsomorphismWithBfs`. Manually counted CC of `encodeTree()`. Wrote four tests for `encodeTree()`. Wrote a refactoring plan for `encodeTree()`. Contributed to the assignment report.
+* Tony: Improved `GenericSegmentTree()` in `GenericSegmentTree.java` by writing 4 tests and a refactoring plan, as well as manually counted the CC for that method and `knn()` in `QuadTree.java`.
 
 # Contributing
 
