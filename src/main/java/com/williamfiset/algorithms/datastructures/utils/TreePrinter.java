@@ -19,40 +19,120 @@ public class TreePrinter {
     public String getText();
   }
 
-  // Print a binary tree.
-  public static String getTreeDisplay(PrintableNode root) {
+  /**
+   * Repeats a character a given amount of times.
+   * 
+   * @param amount    The amount to repeat the given character
+   * @param character The character to repeat
+   * @return The result after repeating the given character
+   */
+  private static String repeatedChar(int amount, String character) {
+    StringBuilder builder = new StringBuilder();
+    for (int i = 0; i < amount; i++) {
+      builder.append(character);
+    }
+    return builder.toString();
+  }
 
-    StringBuilder sb = new StringBuilder();
-    List<List<String>> lines = new ArrayList<List<String>>();
-    List<PrintableNode> level = new ArrayList<PrintableNode>();
-    List<PrintableNode> next = new ArrayList<PrintableNode>();
+  /**
+   * Create a connection string line from line data
+   * 
+   * @param line     The line data
+   * @param perpiece The size of a node value section
+   * @return A string representing the connection between node values at a given
+   *         line.
+   */
+  private static String createNodeConnectionLine(List<String> line, int perpiece) {
+    StringBuilder connectionLineBuilder = new StringBuilder();
+    int hpw = (int) Math.floor(perpiece / 2f) - 1;
+    String lineChar = "#";
+    String emptySpaceChar = " ";
 
-    level.add(root);
+    for (int j = 0; j < line.size(); j++) {
+      // split node
+      String c = emptySpaceChar;
+      if (j % 2 == 1) {
+        if (line.get(j - 1) != null) {
+          c = lineChar;
+        } else {
+          if (j < line.size() && line.get(j) != null)
+            c = lineChar;
+        }
+      }
+      connectionLineBuilder.append(c);
+
+      // lines and spaces
+      if (line.get(j) == null) {
+        connectionLineBuilder.append(repeatedChar(perpiece - 1, emptySpaceChar));
+      } else {
+        connectionLineBuilder.append(repeatedChar(hpw, j % 2 == 0 ? emptySpaceChar : lineChar));
+        connectionLineBuilder.append(lineChar);
+        connectionLineBuilder.append(repeatedChar(hpw, j % 2 == 0 ? lineChar : emptySpaceChar));
+      }
+    }
+    return connectionLineBuilder.toString();
+  }
+
+  /**
+   * Create a string line from line data
+   * 
+   * @param line     The line data
+   * @param perpiece The size of a node value section
+   * @return A string representing the node values at a given line.
+   */
+  private static String createNodeValueLine(List<String> line, int perpiece) {
+    StringBuilder nodeValueBuilder = new StringBuilder();
+    for (int j = 0; j < line.size(); j++) {
+      String f = line.get(j);
+      if (f == null)
+        f = "";
+      int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
+      int gap2 = (int) Math.floor(perpiece / 2f - f.length() / 2f);
+      nodeValueBuilder.append(repeatedChar(gap1, " "));
+      nodeValueBuilder.append(f);
+      nodeValueBuilder.append(repeatedChar(gap2, " "));
+    }
+    return nodeValueBuilder.toString();
+  }
+
+  /**
+   * Get the tree as lines
+   * 
+   * @param root The root of the binary tree
+   * @return The tree represented as lines
+   */
+  private static List<List<String>> getEntireTreeAsLines(PrintableNode root) {
+    List<List<String>> lines = new ArrayList<>();
+    List<PrintableNode> level = new ArrayList<>();
+    List<PrintableNode> next = new ArrayList<>();
     int nn = 1;
-    int widest = 0;
+    level.add(root);
 
     while (nn != 0) {
       nn = 0;
       List<String> line = new ArrayList<String>();
-      for (PrintableNode n : level) {
-        if (n == null) {
+      for (PrintableNode node : level) {
+        if (node == null) {
           line.add(null);
           next.add(null);
           next.add(null);
-        } else {
-          String aa = n.getText();
-          line.add(aa);
-          if (aa.length() > widest) widest = aa.length();
-
-          next.add(n.getLeft());
-          next.add(n.getRight());
-
-          if (n.getLeft() != null) nn++;
-          if (n.getRight() != null) nn++;
+          continue;
         }
-      }
 
-      if (widest % 2 == 1) widest++;
+        String aa = node.getText();
+        if (aa == null)
+          aa = "NULL";
+        line.add(aa);
+
+        next.add(node.getLeft());
+        next.add(node.getRight());
+
+        if (node.getLeft() != null)
+          nn++;
+        if (node.getRight() != null)
+          nn++;
+
+      }
 
       lines.add(line);
 
@@ -61,60 +141,56 @@ public class TreePrinter {
       next = tmp;
       next.clear();
     }
+    return lines;
+  }
 
-    int perpiece = lines.get(lines.size() - 1).size() * (widest + 4);
-    for (int i = 0; i < lines.size(); i++) {
-      List<String> line = lines.get(i);
-      int hpw = (int) Math.floor(perpiece / 2f) - 1;
-      if (i > 0) {
-        for (int j = 0; j < line.size(); j++) {
-
-          // split node
-          char c = ' ';
-          if (j % 2 == 1) {
-            if (line.get(j - 1) != null) {
-              c = (line.get(j) != null) ? '#' : '#';
-            } else {
-              if (j < line.size() && line.get(j) != null) c = '#';
-            }
-          }
-          sb.append(c);
-
-          // lines and spaces
-          if (line.get(j) == null) {
-            for (int k = 0; k < perpiece - 1; k++) {
-              sb.append(' ');
-            }
-          } else {
-            for (int k = 0; k < hpw; k++) {
-              sb.append(j % 2 == 0 ? " " : "#");
-            }
-            sb.append(j % 2 == 0 ? "#" : "#");
-            for (int k = 0; k < hpw; k++) {
-              sb.append(j % 2 == 0 ? "#" : " ");
-            }
-          }
-        }
-        sb.append('\n');
+  /**
+   * Getting the widest list elements, that is, the widest node value as string
+   * element in the entire tree.
+   * 
+   * @param lines All the line data
+   * @return The widest list element
+   */
+  private static int getWidestListElement(List<List<String>> lines) {
+    int widest = 0;
+    for (List<String> line : lines) {
+      for (String lineElement : line) {
+        if (lineElement == null)
+          continue;
+        if (lineElement.length() > widest)
+          widest = lineElement.length();
       }
-      for (int j = 0; j < line.size(); j++) {
-        String f = line.get(j);
-        if (f == null) f = "";
-        int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
-        int gap2 = (int) Math.floor(perpiece / 2f - f.length() / 2f);
+      if (widest % 2 == 1)
+        widest++;
+    }
+    return widest;
+  }
 
-        for (int k = 0; k < gap1; k++) {
-          sb.append(' ');
-        }
-        sb.append(f);
-        for (int k = 0; k < gap2; k++) {
-          sb.append(' ');
-        }
-      }
-      sb.append('\n');
+  /**
+   * Prints a binary tree
+   * 
+   * @param root The root of the tree to print
+   * @return A string of the binary tree
+   */
+  // Print a binary tree.
+  public static String getTreeDisplay(PrintableNode root) {
 
+    if (root == null)
+      return null;
+
+    StringBuilder treeAsStringBuilder = new StringBuilder();
+    List<List<String>> treeAsLines = getEntireTreeAsLines(root);
+    int widest = getWidestListElement(treeAsLines);
+    int perpiece = treeAsLines.get(treeAsLines.size() - 1).size() * (widest + 4);
+
+    for (int i = 0; i < treeAsLines.size(); i++) {
+      List<String> lineData = treeAsLines.get(i);
+      boolean isFirstLine = i == 0;
+      if (!isFirstLine)
+        treeAsStringBuilder.append(createNodeConnectionLine(lineData, perpiece) + "\n");
+      treeAsStringBuilder.append(createNodeValueLine(lineData, perpiece) + "\n");
       perpiece /= 2;
     }
-    return sb.toString();
+    return treeAsStringBuilder.toString();
   }
 }
