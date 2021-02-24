@@ -35,7 +35,8 @@ Total nloc | Avg.NLOC | AvgCCN | Avg.token |  Fun Cnt | Warning cnt | Fun Rt | n
 -----------|----------|--------|-----------|----------|-------------|--------|---------
 28870   |    9.4   |   2.5  |    84.5   |   2696   |     13      |  0.00  |  0.03
 
-
+## Statement of contributions
+* Lara: chose `lineSegmentLineSegmentIntersection()` in `LineSegmentLineSegmentIntersection.java` and `construct()` in `SubstringVerificationSuffixArray.java`, manually counted CC of `lineSegmentLineSegmentIntersection()`, wrote four tests for `lineSegmentLineSegmentIntersection()`, created a refactoring plan and refactored `lineSegmentLineSegmentIntersection()`, documented the process of this assignment.
 
 # Contributing
 
