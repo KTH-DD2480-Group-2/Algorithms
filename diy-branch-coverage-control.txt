@@ -67,6 +67,12 @@ TreeIsomorphismWithBfs.encodeTree.ID_14
 TreeIsomorphismWithBfs.encodeTree.ID_15
 TreeIsomorphismWithBfs.encodeTree.ID_16
 TreeIsomorphismWithBfs.encodeTree.ID_17
+TreeIsomorphismWithBfs.encodeTree.ID_18
+TreeIsomorphismWithBfs.encodeTree.ID_19
+TreeIsomorphismWithBfs.encodeTree.ID_20
+TreeIsomorphismWithBfs.encodeTree.ID_21
+TreeIsomorphismWithBfs.encodeTree.ID_22
+TreeIsomorphismWithBfs.encodeTree.ID_23
 QuadTree.knn.id_1
 QuadTree.knn.id_2
 QuadTree.knn.id_3
