@@ -77,6 +77,12 @@ public class TreeIsomorphismWithBfs {
     parent[root] = -1; // unused.
     q.offer(root);
 
+    /*
+      Refactor plan: line 85 to 97 below could be moved to a separate function as this part of the code has a single
+      purpose and contributes a lot to the CC of the encodeTree() function. Moving this code to a separate function
+      would make encodeTree() easier to follow.
+     */
+
     // Do a BFS to find all the leaf nodes
     while (!q.isEmpty()) {
       int at = q.poll();
@@ -112,6 +118,10 @@ public class TreeIsomorphismWithBfs {
         treeSize--;
       }
 
+      /*
+       Refactor plan: move code lines 125 to 138 to another function, as it also serves a single purpose and
+       contributes a lot to the CC of encodeTree().
+       */
       // Update parent labels
       for (int p : newLeafs) {
 
