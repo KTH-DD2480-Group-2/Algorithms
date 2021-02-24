@@ -38,6 +38,7 @@ Total nloc | Avg.NLOC | AvgCCN | Avg.token |  Fun Cnt | Warning cnt | Fun Rt | n
 ## Statement of contributions
 * Lara: chose `lineSegmentLineSegmentIntersection()` in `LineSegmentLineSegmentIntersection.java` and `construct()` in `SubstringVerificationSuffixArray.java`, manually counted CC of `lineSegmentLineSegmentIntersection()`, wrote four tests for `lineSegmentLineSegmentIntersection()`, created a refactoring plan and refactored `lineSegmentLineSegmentIntersection()`, documented the process of this assignment.
 * Isak: chose `encodeTree()` in `TreeIsomorphismWithBfs`. Manually counted CC of `encodeTree()`. Wrote four tests for `encodeTree()`. Wrote a refactoring plan for `encodeTree()`. Contributed to the assignment report.
+* Tony: Improved `GenericSegmentTree()` in `GenericSegmentTree.java` by writing 4 tests and a refactoring plan, as well as manually counted the CC for that method and `knn()` in `QuadTree.java`.
 
 # Contributing
 
