@@ -38,6 +38,7 @@ dependencies {
 
   // JUnit 5 / Jupiter
   testImplementation('org.junit.jupiter:junit-jupiter-api:5.4.2')
+  testImplementation "com.google.truth:truth:1.1.2"
    
   // Google Guava lib
   testCompile group: 'com.google.guava', name: 'guava', version: '22.0'
@@ -84,3 +85,5 @@ jacocoTestReport {
     html.enabled = true
   }
 }
+
+compileJava.dependsOn 'googleJavaFormat'
