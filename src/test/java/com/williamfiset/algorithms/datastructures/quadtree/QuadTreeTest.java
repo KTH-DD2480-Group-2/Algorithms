@@ -273,7 +273,6 @@ public class QuadTreeTest {
     }
   }
 
-  // Covers 26/192 13%
   // Total 79/192 41%
   @Test
   public void testKNN2_EmptyTree() {
@@ -287,7 +286,6 @@ public class QuadTreeTest {
     assertThat(points.size() == 0);
   }
 
-  // Covers 77/192 40%
   // Total 99/192 51%
   @Test
   public void testKNN3_Points_In_NE() {
@@ -297,7 +295,6 @@ public class QuadTreeTest {
 
     int x = 50, y = 50, k = 4;
 
-    // NE quadrant target points
     quadTree.add(110, 110);
     quadTree.add(120, 120);
     quadTree.add(130, 130);
@@ -328,7 +325,6 @@ public class QuadTreeTest {
     assertThat(found[0] && found[1] && found[2] && found[3]);
   }
 
-  // Covers 77/192 40%
   // Total 107/192 55%
   @Test
   public void testKNN4_SW() {
@@ -338,7 +334,6 @@ public class QuadTreeTest {
 
     int x = 150, y = 150, k = 4;
 
-    // NE quadrant target points
     quadTree.add(10, 10);
     quadTree.add(20, 20);
     quadTree.add(30, 30);
@@ -378,7 +373,6 @@ public class QuadTreeTest {
 
     int x = 150, y = 50, k = 4;
 
-    // NE quadrant target points
     quadTree.add(90, 110);
     quadTree.add(80, 120);
     quadTree.add(70, 130);
@@ -408,6 +402,7 @@ public class QuadTreeTest {
     }
     assertThat(found[0] && found[1] && found[2] && found[3]);
   }
+
   // Total 108/192 56%
   @Test
   public void testKNN6_Same_Dist() {
@@ -417,7 +412,6 @@ public class QuadTreeTest {
 
     int x = 100, y = 100, k = 4;
 
-    // NE quadrant target points
     quadTree.add(50, 50);
     quadTree.add(50, 150);
     quadTree.add(150, 150);
@@ -454,7 +448,6 @@ public class QuadTreeTest {
 
     int x = 300, y = 300, k = 4;
 
-    // NE quadrant target points
     quadTree.add(10, 10);
     quadTree.add(20, 20);
     quadTree.add(30, 30);
