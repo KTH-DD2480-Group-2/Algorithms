@@ -321,6 +321,15 @@ public class GenericSegmentTreeTest {
     }
   }
 
+  @Test(expected = UnsupportedOperationException.class)
+  public void testUnsupportedCombinationFunction() {
+    long values[] = {0};
+    GenericSegmentTree.SegmentCombinationFn combinationFn = GenericSegmentTree.SegmentCombinationFn.INVALID;
+    GenericSegmentTree.RangeUpdateFn rangeUpdateFn = GenericSegmentTree.RangeUpdateFn.ADDITION;
+
+    GenericSegmentTree tree = new GenericSegmentTree(values, combinationFn, rangeUpdateFn);
+  }
+
   @Test(expected = IllegalArgumentException.class)
   public void testNullSegmentTreeValues() {
     long values[] = null;
@@ -341,9 +350,10 @@ public class GenericSegmentTreeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullSegmentTreeUpdateFunction() {
-    //initalize an empty matrix
+    // initalize an empty matrix
     long values[] = {0};
-    GenericSegmentTree.SegmentCombinationFn combinationFn = GenericSegmentTree.SegmentCombinationFn.MIN;
+    GenericSegmentTree.SegmentCombinationFn combinationFn =
+        GenericSegmentTree.SegmentCombinationFn.MIN;
     GenericSegmentTree.RangeUpdateFn rangeUpdateFn = null;
 
     GenericSegmentTree tree = new GenericSegmentTree(values, combinationFn, rangeUpdateFn);
