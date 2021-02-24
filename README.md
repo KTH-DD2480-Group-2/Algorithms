@@ -37,6 +37,12 @@ Total nloc | Avg.NLOC | AvgCCN | Avg.token |  Fun Cnt | Warning cnt | Fun Rt | n
 
 ## Statement of contributions
 * Lara: chose `lineSegmentLineSegmentIntersection()` in `LineSegmentLineSegmentIntersection.java` and `construct()` in `SubstringVerificationSuffixArray.java`, manually counted CC of `lineSegmentLineSegmentIntersection()`, wrote four tests for `lineSegmentLineSegmentIntersection()`, created a refactoring plan and refactored `lineSegmentLineSegmentIntersection()`, documented the process of this assignment.
+* Adam Jonsson: chose `getTreeDisplay()`, in `TreePrinter.java`.
+  * Created 4+ tests to increase coverage
+  * Manually counted CC
+  * Create a refactoring plan and refactored
+  * documented the process of this assignment.
+  * Did also create the DIY coverage analyser
 
 # Contributing
 
