@@ -83,3 +83,5 @@ jacocoTestReport {
     html.enabled = true
   }
 }
+
+compileJava.dependsOn 'googleJavaFormat'

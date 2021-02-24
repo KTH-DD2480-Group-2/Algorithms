@@ -224,7 +224,6 @@ public class QuadTree {
 
       // TODO(williamfiset): Refactor.
       if (heap.size() == k) {
-
         if (isNorth(pointQuadrant)) {
           if (pointQuadrant == NORTH_WEST) {
             if (checkHorizontalCell) if (ne != null) ne.knn(k, x, y, heap);
@@ -246,7 +245,6 @@ public class QuadTree {
             if (checkDiagonalCell) if (nw != null) nw.knn(k, x, y, heap);
           }
         }
-
         // Still need to find k - heap.size() nodes!
       } else {
 
@@ -287,7 +285,6 @@ public class QuadTree {
 
             // must intersect
           } else {
-
             if (isNorth(pointQuadrant)) {
               if (pointQuadrant == NORTH_WEST) {
                 if (checkHorizontalCell) if (ne != null) ne.knn(k, x, y, heap);

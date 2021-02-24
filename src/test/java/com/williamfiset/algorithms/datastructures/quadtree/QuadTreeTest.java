@@ -2,6 +2,9 @@ package com.williamfiset.algorithms.datastructures.quadtree;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -220,12 +223,16 @@ public class QuadTreeTest {
     }
   }
 
-  /*
+  boolean comparePT(QuadTree.Pt pt1, long x, long y) {
+    return (pt1.x == x && pt1.y == y);
+  }
+
+  // Covers 77/192 40%
   @Test
   public void testKNN1() {
 
     int W = 99, H = 99, NUM_NODES = 2;
-    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0,0,W,H), NUM_NODES);
+    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0, 0, W, H), NUM_NODES);
 
     int x = 46, y = 92, k = 7;
 
@@ -250,8 +257,54 @@ public class QuadTreeTest {
 
     // NE quadrant target points
     quadTree.add(52, y);
-    quadTree.add(52, y+1);
-    quadTree.add(52, y-1);
+    quadTree.add(52, y + 1);
+    quadTree.add(52, y - 1);
+
+    List<QuadTree.Pt> points = quadTree.kNearestNeighbors(k, x, y);
+    System.out.println(points);
+
+    List<QuadTree.SortedPt> sPoints = new ArrayList<>();
+    for (QuadTree.Pt p : quadTree.getPoints()) {
+      sPoints.add(new QuadTree.SortedPt(Math.hypot(p.x - x, p.y - y), p));
+    }
+    Collections.sort(sPoints);
+    for (QuadTree.SortedPt p : sPoints) {
+      System.out.println(p);
+    }
+  }
+
+  // Covers 26/192 13%
+  // Total 79/192 41%
+  @Test
+  public void testKNN2_EmptyTree() {
+
+    int W = 200, H = 200, NUM_NODES = 6;
+    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0, 0, W, H), NUM_NODES);
+
+    int x = 50, y = 50, k = 5;
+
+    List<QuadTree.Pt> points = quadTree.kNearestNeighbors(k, x, y);
+    assertThat(points.size() == 0);
+  }
+
+  // Covers 77/192 40%
+  // Total 99/192 51%
+  @Test
+  public void testKNN3_Points_In_NE() {
+
+    int W = 199, H = 199, NUM_NODES = 2;
+    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0, 0, W, H), NUM_NODES);
+
+    int x = 50, y = 50, k = 4;
+
+    // NE quadrant target points
+    quadTree.add(110, 110);
+    quadTree.add(120, 120);
+    quadTree.add(130, 130);
+    quadTree.add(140, 140);
+    quadTree.add(150, 150);
+    quadTree.add(160, 160);
+    quadTree.add(170, 170);
 
     List<QuadTree.Pt> points = quadTree.kNearestNeighbors(k, x, y);
     System.out.println(points);
@@ -265,7 +318,170 @@ public class QuadTreeTest {
       System.out.println(p);
     }
 
+    boolean[] found = new boolean[] {false, false, false, false};
+    for (QuadTree.Pt pt : points) {
+      if (comparePT(pt, 110, 110)) found[0] = true;
+      else if (comparePT(pt, 120, 120)) found[1] = true;
+      else if (comparePT(pt, 130, 130)) found[2] = true;
+      else if (comparePT(pt, 140, 140)) found[3] = true;
+    }
+    assertThat(found[0] && found[1] && found[2] && found[3]);
   }
-  */
 
+  // Covers 77/192 40%
+  // Total 107/192 55%
+  @Test
+  public void testKNN4_SW() {
+
+    int W = 199, H = 199, NUM_NODES = 2;
+    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0, 0, W, H), NUM_NODES);
+
+    int x = 150, y = 150, k = 4;
+
+    // NE quadrant target points
+    quadTree.add(10, 10);
+    quadTree.add(20, 20);
+    quadTree.add(30, 30);
+    quadTree.add(40, 40);
+    quadTree.add(50, 50);
+    quadTree.add(60, 60);
+    quadTree.add(70, 70);
+
+    List<QuadTree.Pt> points = quadTree.kNearestNeighbors(k, x, y);
+    System.out.println(points);
+
+    List<QuadTree.SortedPt> sPoints = new ArrayList<>();
+    for (QuadTree.Pt p : quadTree.getPoints()) {
+      sPoints.add(new QuadTree.SortedPt(Math.hypot(p.x - x, p.y - y), p));
+    }
+    Collections.sort(sPoints);
+    for (QuadTree.SortedPt p : sPoints) {
+      System.out.println(p);
+    }
+
+    boolean[] found = new boolean[] {false, false, false, false};
+    for (QuadTree.Pt pt : points) {
+      if (comparePT(pt, 70, 70)) found[0] = true;
+      else if (comparePT(pt, 60, 60)) found[1] = true;
+      else if (comparePT(pt, 50, 50)) found[2] = true;
+      else if (comparePT(pt, 40, 40)) found[3] = true;
+    }
+    assertThat(found[0] && found[1] && found[2] && found[3]);
+  }
+
+  // Total 108/192 56%
+  @Test
+  public void testKNN5_NW() {
+
+    int W = 199, H = 199, NUM_NODES = 2;
+    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0, 0, W, H), NUM_NODES);
+
+    int x = 150, y = 50, k = 4;
+
+    // NE quadrant target points
+    quadTree.add(90, 110);
+    quadTree.add(80, 120);
+    quadTree.add(70, 130);
+    quadTree.add(60, 140);
+    quadTree.add(50, 150);
+    quadTree.add(40, 160);
+    quadTree.add(30, 170);
+
+    List<QuadTree.Pt> points = quadTree.kNearestNeighbors(k, x, y);
+    System.out.println(points);
+
+    List<QuadTree.SortedPt> sPoints = new ArrayList<>();
+    for (QuadTree.Pt p : quadTree.getPoints()) {
+      sPoints.add(new QuadTree.SortedPt(Math.hypot(p.x - x, p.y - y), p));
+    }
+    Collections.sort(sPoints);
+    for (QuadTree.SortedPt p : sPoints) {
+      System.out.println(p);
+    }
+
+    boolean[] found = new boolean[] {false, false, false, false};
+    for (QuadTree.Pt pt : points) {
+      if (comparePT(pt, 90, 110)) found[0] = true;
+      else if (comparePT(pt, 80, 120)) found[1] = true;
+      else if (comparePT(pt, 70, 130)) found[2] = true;
+      else if (comparePT(pt, 60, 140)) found[3] = true;
+    }
+    assertThat(found[0] && found[1] && found[2] && found[3]);
+  }
+  // Total 108/192 56%
+  @Test
+  public void testKNN6_Same_Dist() {
+
+    int W = 199, H = 199, NUM_NODES = 2;
+    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0, 0, W, H), NUM_NODES);
+
+    int x = 100, y = 100, k = 4;
+
+    // NE quadrant target points
+    quadTree.add(50, 50);
+    quadTree.add(50, 150);
+    quadTree.add(150, 150);
+    quadTree.add(150, 50);
+
+    List<QuadTree.Pt> points = quadTree.kNearestNeighbors(k, x, y);
+    System.out.println(points);
+
+    List<QuadTree.SortedPt> sPoints = new ArrayList<>();
+    for (QuadTree.Pt p : quadTree.getPoints()) {
+      sPoints.add(new QuadTree.SortedPt(Math.hypot(p.x - x, p.y - y), p));
+    }
+    Collections.sort(sPoints);
+    for (QuadTree.SortedPt p : sPoints) {
+      System.out.println(p);
+    }
+
+    boolean[] found = new boolean[] {false, false, false, false};
+    for (QuadTree.Pt pt : points) {
+      if (comparePT(pt, 50, 150)) found[0] = true;
+      else if (comparePT(pt, 150, 150)) found[1] = true;
+      else if (comparePT(pt, 150, 50)) found[2] = true;
+      else if (comparePT(pt, 50, 50)) found[3] = true;
+    }
+    assertThat(found[0] && found[1] && found[2] && found[3]);
+  }
+
+  // Total 108/192 57%
+  @Test
+  public void testKNN7_Outside() {
+
+    int W = 199, H = 199, NUM_NODES = 2;
+    QuadTree quadTree = new QuadTree(new QuadTree.Rect(0, 0, W, H), NUM_NODES);
+
+    int x = 300, y = 300, k = 4;
+
+    // NE quadrant target points
+    quadTree.add(10, 10);
+    quadTree.add(20, 20);
+    quadTree.add(30, 30);
+    quadTree.add(40, 40);
+    quadTree.add(50, 50);
+    quadTree.add(60, 60);
+    quadTree.add(70, 70);
+
+    List<QuadTree.Pt> points = quadTree.kNearestNeighbors(k, x, y);
+    System.out.println(points);
+
+    List<QuadTree.SortedPt> sPoints = new ArrayList<>();
+    for (QuadTree.Pt p : quadTree.getPoints()) {
+      sPoints.add(new QuadTree.SortedPt(Math.hypot(p.x - x, p.y - y), p));
+    }
+    Collections.sort(sPoints);
+    for (QuadTree.SortedPt p : sPoints) {
+      System.out.println(p);
+    }
+
+    boolean[] found = new boolean[] {false, false, false, false};
+    for (QuadTree.Pt pt : points) {
+      if (comparePT(pt, 70, 70)) found[0] = true;
+      else if (comparePT(pt, 60, 60)) found[1] = true;
+      else if (comparePT(pt, 50, 50)) found[2] = true;
+      else if (comparePT(pt, 40, 40)) found[3] = true;
+    }
+    assertThat(found[0] && found[1] && found[2] && found[3]);
+  }
 }
