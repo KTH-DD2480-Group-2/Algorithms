@@ -223,6 +223,11 @@ public class QuadTree {
       boolean checkDiagonalCell = checkHorizontalCell && checkVerticalCell;
 
       // TODO(williamfiset): Refactor.
+      // Clearly there is a code repetition here which needs to be solved.
+      // This part of the code handles the case when the heap is full but there are still unexamined points
+      // that can be closer. This can be moved to a separate function called findCloserPoints(). This will
+      // eliminate the code duplication, but also will reduce the functions cyclomatic complexity since many
+      // nested decisions exist in this part.
       if (heap.size() == k) {
         if (isNorth(pointQuadrant)) {
           if (pointQuadrant == NORTH_WEST) {
