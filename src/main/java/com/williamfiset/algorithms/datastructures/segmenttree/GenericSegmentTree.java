@@ -23,7 +23,8 @@ public class GenericSegmentTree {
     MIN,
     MAX,
     GCD,
-    PRODUCT
+    PRODUCT,
+    INVALID
   }
 
   // When updating the value of a specific index position, or a range of values,

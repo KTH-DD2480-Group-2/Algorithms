@@ -7,6 +7,12 @@
 Algorithms and data structures are fundamental to efficient code and good software design. Creating and designing excellent algorithms is required for being an exemplary programmer. This repository's goal is to demonstrate how to correctly implement common data structures and algorithms in the simplest and most elegant ways.
 
 # DD2480 - Group 2 Paragraph
+## DIY Branch Coverage tool
+Use the `BranchCoverageAnalyser` to mark all the branches in you function. See the `getTreeDisplay()` in `TreePrinter.java` for a full example how it should be used (The example is not perfect however, many branches are not checked). Remember to also put all the branch ids that you create in the `diy-branch-coverage-control.txt` file.
+
+**Pro tip!** In order to also cover conditional expression, you can use the `BranchCoverageAnalyser.markCoveredValue()` function. See line 100 in `getTreeDisplay()`.
+
+To see the statistics report run gradle build first and then execute `com.williamfiset.algorithms.utils.CoverageStatistics.main()`. The report will be generated in `build/reports/DIY-Coverage-Report.txt`
 ## Lizard Results
 
 NLOC  |  CCN  | token | PARAM | length | location
@@ -28,6 +34,8 @@ NLOC  |  CCN  | token | PARAM | length | location
 Total nloc | Avg.NLOC | AvgCCN | Avg.token |  Fun Cnt | Warning cnt | Fun Rt | nloc Rt
 -----------|----------|--------|-----------|----------|-------------|--------|---------
 28870   |    9.4   |   2.5  |    84.5   |   2696   |     13      |  0.00  |  0.03
+
+
 
 # Contributing
 
