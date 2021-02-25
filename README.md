@@ -35,7 +35,23 @@ Total nloc | Avg.NLOC | AvgCCN | Avg.token |  Fun Cnt | Warning cnt | Fun Rt | n
 -----------|----------|--------|-----------|----------|-------------|--------|---------
 28870   |    9.4   |   2.5  |    84.5   |   2696   |     13      |  0.00  |  0.03
 
-
+## Statement of contributions
+* Lara: chose `lineSegmentLineSegmentIntersection()` in `LineSegmentLineSegmentIntersection.java` and `construct()` in `SubstringVerificationSuffixArray.java`, manually counted CC of `lineSegmentLineSegmentIntersection()`, wrote four tests for `lineSegmentLineSegmentIntersection()`, created a refactoring plan and refactored `lineSegmentLineSegmentIntersection()`, documented the process of this assignment.
+* Adam Jonsson: chose `getTreeDisplay()`, in `TreePrinter.java`.
+  * Created 4+ tests to increase coverage
+  * Manually counted CC
+  * Create a refactoring plan and refactored
+  * documented the process of this assignment.
+  * Did also create the DIY coverage analyser
+* Isak: chose `encodeTree()` in `TreeIsomorphismWithBfs`. Manually counted CC of `encodeTree()`. Wrote four tests for `encodeTree()`. Wrote a refactoring plan for `encodeTree()`. Contributed to the assignment report.
+* Tony: Improved `GenericSegmentTree()` in `GenericSegmentTree.java` by writing 4 tests and a refactoring plan, as well as manually counted the CC for that method and `knn()` in `QuadTree.java`.
+* Hovig: chose `knn()` in QuadTree.java
+  * Created 4+ tests to increase coverage.
+  * Manually counted CC for this function and two other.
+  * Create a refactoring plan and refactored achieving complexity reduction of >35%.
+  * Developed the statistic tool for the DIY coverage analyser.
+  * Documented the usage of the DIY tool in README.md.
+  * Implemented the DIY coverage tool.
 
 # Contributing
 
