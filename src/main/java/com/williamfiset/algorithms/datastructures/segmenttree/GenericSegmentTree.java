@@ -14,7 +14,6 @@
 package com.williamfiset.algorithms.datastructures.segmenttree;
 
 import com.williamfiset.algorithms.utils.BranchCoverageAnalyser;
-
 import java.util.function.BinaryOperator;
 
 public class GenericSegmentTree {
