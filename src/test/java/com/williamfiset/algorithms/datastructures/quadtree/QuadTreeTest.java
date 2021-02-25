@@ -227,7 +227,7 @@ public class QuadTreeTest {
     return (pt1.x == x && pt1.y == y);
   }
 
-  // Covers 77/192 40%
+  /** This test was already there but was commented out. Covers 77/192 40% */
   @Test
   public void testKNN1() {
 
@@ -273,7 +273,7 @@ public class QuadTreeTest {
     }
   }
 
-  // Total 79/192 41%
+  /** Checks the edge case of an empty tree. Total 79/192 41% (when executed with precious tests) */
   @Test
   public void testKNN2_EmptyTree() {
 
@@ -286,7 +286,10 @@ public class QuadTreeTest {
     assertThat(points.size() == 0);
   }
 
-  // Total 99/192 51%
+  /**
+   * Tessts the case when all the points are located in NE. Total 99/192 51% (when executed with
+   * precious tests)
+   */
   @Test
   public void testKNN3_Points_In_NE() {
 
@@ -325,7 +328,10 @@ public class QuadTreeTest {
     assertThat(found[0] && found[1] && found[2] && found[3]);
   }
 
-  // Total 107/192 55%
+  /**
+   * Tessts the case when all the points are located in SW. Total 107/192 55% (when executed with
+   * precious tests)
+   */
   @Test
   public void testKNN4_SW() {
 
@@ -364,7 +370,10 @@ public class QuadTreeTest {
     assertThat(found[0] && found[1] && found[2] && found[3]);
   }
 
-  // Total 108/192 56%
+  /**
+   * Tessts the case when all the points are located in NW. Total 108/192 56% (when executed with
+   * precious tests)
+   */
   @Test
   public void testKNN5_NW() {
 
@@ -403,7 +412,10 @@ public class QuadTreeTest {
     assertThat(found[0] && found[1] && found[2] && found[3]);
   }
 
-  // Total 108/192 56%
+  /**
+   * Tests the case when all points have the same distance. Total 108/192 56% (when executed with
+   * precious tests)
+   */
   @Test
   public void testKNN6_Same_Dist() {
 
@@ -439,7 +451,10 @@ public class QuadTreeTest {
     assertThat(found[0] && found[1] && found[2] && found[3]);
   }
 
-  // Total 108/192 57%
+  /**
+   * Tests the case when the reference point is outside the region. Total 109/192 57% (when executed
+   * with precious tests)
+   */
   @Test
   public void testKNN7_Outside() {
 
