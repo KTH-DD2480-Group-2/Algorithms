@@ -45,6 +45,13 @@ Total nloc | Avg.NLOC | AvgCCN | Avg.token |  Fun Cnt | Warning cnt | Fun Rt | n
   * Did also create the DIY coverage analyser
 * Isak: chose `encodeTree()` in `TreeIsomorphismWithBfs`. Manually counted CC of `encodeTree()`. Wrote four tests for `encodeTree()`. Wrote a refactoring plan for `encodeTree()`. Contributed to the assignment report.
 * Tony: Improved `GenericSegmentTree()` in `GenericSegmentTree.java` by writing 4 tests and a refactoring plan, as well as manually counted the CC for that method and `knn()` in `QuadTree.java`.
+* Hovig: chose `knn()` in QuadTree.java
+  * Created 4+ tests to increase coverage.
+  * Manually counted CC for this function and two other.
+  * Create a refactoring plan and refactored achieving complexity reduction of >35%.
+  * Developed the statistic tool for the DIY coverage analyser.
+  * Documented the usage of the DIY tool in README.md.
+  * Implemented the DIY coverage tool.
 
 # Contributing
 
